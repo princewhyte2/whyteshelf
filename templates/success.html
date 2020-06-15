@@ -1,0 +1,22 @@
+{% extends "login.html" %} {% block list %} <a href="{{ url_for('logout')}}">log out</a> {% endblock %} {% block form %}
+<h3>welcome {{ session["username"] }}</h3>
+<p>Search for any book below</p>
+
+<form action="{{ url_for('success') }}" method="POST">
+    <div class="input-group">
+        <input type="search" class="form-control" placeholder="Search Title, Author or Isbn" name="search" style="height: 69px;" required>
+        <div class="input-group-btn">
+            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+</form>
+<ul>
+    {% for id,isbn,title, author, year in results %}
+    <a href="{{ url_for('book', isbn = isbn , title=title)}}">
+        <li>{{ title }} by {{author}}</li>
+    </a>
+    {% endfor %}
+</ul>
+{% if count == False %}
+<h2>no result found .... please search another keyword</h2>
+{% endif %} {% endblock %}

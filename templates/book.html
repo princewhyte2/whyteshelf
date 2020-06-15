@@ -1,0 +1,45 @@
+ {% extends "login.html" %} {% block list %} SignUp {% endblock %} {% block form %}
+<div class="row">
+    <div class="col-12 col-md-4">
+        <img src="http://covers.openlibrary.org/b/isbn/{{isbn}}-M.jpg" alt="">
+    </div>
+    <br> {% for id,isbn,title, author, year in results %}
+    <div class="col-12 col-sm-4">
+        <h2> {{title}}</h2>
+        <h5>Author: {{author}}</h5>
+        <h5>Isbn: {{isbn}}</h5>
+        <h5>Year:{{year}}</h5>
+        {% endfor %}
+    </div>
+    <div class="col-12 col-sm-4">
+        <h1>GOODREADS REVIEWS</h1>
+        <h2>RATING : {{bookRate}} </h2>
+        <h2>AVERAGE: {{average}}</h2>
+    </div>
+</div>
+
+<form action="{{ url_for('book',isbn=isbn) }}" method="POST">
+    <div class="form-group form-primary">
+        <label for="exampleFormControlSelect1">Give this book a rating</label>
+        <select name="rating" class="form-control" id="exampleFormControlSelect1" style="width: 70px;" required>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea name="comments" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+    </div>
+
+    <button>SEND</button>
+</form>
+{% if message == True %}
+<h2>you have a comment already</h2>
+{% endif %} {% if request.form.get('comments') != None %}
+<h4>you rated this book a {{request.form.get('rating')}} and you made this comment{{request.form.get('comments')}} </h4>
+
+{% endif %} {% endblock %}
