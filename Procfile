@@ -1,1 +1,1 @@
-web: gunicorn whytebook:application
+web: gunicorn application
