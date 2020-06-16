@@ -1,4 +1,4 @@
- {% extends "login.html" %} {% block list %} SignUp {% endblock %} {% block form %}
+ {% extends "login.html" %} {% block list %} book {% endblock %} {% block form %}
 <div class="row">
     <div class="col-12 col-md-4">
         <img src="http://covers.openlibrary.org/b/isbn/{{isbn}}-M.jpg" alt="">
@@ -12,9 +12,9 @@
         {% endfor %}
     </div>
     <div class="col-12 col-sm-4">
-        <h1>GOODREADS REVIEWS</h1>
-        <h2>RATING : {{bookRate}} </h2>
-        <h2>AVERAGE: {{average}}</h2>
+        <img src="goodreads.png" alt="goodreads image">
+        <h2>Rating : {{bookRate}} </h2>
+        <h2>Average: {{average}}</h2>
     </div>
 </div>
 
